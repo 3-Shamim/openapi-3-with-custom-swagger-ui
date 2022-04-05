@@ -20,8 +20,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
                 @SecurityRequirement(name = "x-token")
         }, // For root label.
         servers = {
-                @Server(url = "http://localhost:8080"),
-                @Server(url = "Custom Server", variables = {@ServerVariable(name = "Custom Server", defaultValue = "http://localhost:8080")})
+                @Server(url = "http://localhost:8080", description = "Basic base url."),
+                @Server(
+                        url = "{custom-server}",
+                        variables = {@ServerVariable(name = "custom-server", defaultValue = "http://localhost:8080")},
+                        description = "Customer url can be applied."
+                )
         }
 )
 @SecurityScheme(name = "basic-security", scheme = "basic", type = SecuritySchemeType.HTTP)
